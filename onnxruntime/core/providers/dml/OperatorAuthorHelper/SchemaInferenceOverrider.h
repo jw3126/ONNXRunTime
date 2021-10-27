@@ -41,8 +41,7 @@ namespace SchemaInferenceOverrider
                 }
 
                 auto abiContext =
-                    wil::MakeOrThrow<Windows::AI::MachineLearning::Adapter::MLSchemaInferenceContext>(
-                        &nodeInfo, &ctx, constantCpuInputsCapture);
+                    Windows::AI::MachineLearning::Adapter::MLSchemaInferenceContext::Create(&nodeInfo, &ctx, requiredConstantCpuInputs);
 
                 THROW_IF_FAILED(shapeInferrer->InferOutputShapes(abiContext.Get()));
                 abiContext->Close();
